@@ -1,0 +1,20 @@
+components:
+  - name: flask-chatbot
+    buildSpec:
+      type: pip
+      target: app:app
+    watchDirectories:
+      - .
+    entryPoint:
+      - gunicorn
+      - app:app
+    env:
+      - name: PYTHON_VERSION
+        value: "3.11"
+      - name: GOOGLE_API_KEY
+        type: secret
+      - name: OPENAI_API_KEY
+        type: secret
+    dependencies:
+      - type: python
+        version: "3.11"
